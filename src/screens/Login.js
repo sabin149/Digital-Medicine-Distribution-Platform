@@ -12,6 +12,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,7 +61,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://backend-emedicine-platform.herokuapp.com/user/login", {
+      const res = await API.post("/user/login", {
         email,
         password,
       });

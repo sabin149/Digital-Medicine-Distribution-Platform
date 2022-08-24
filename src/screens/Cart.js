@@ -10,6 +10,7 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API } from "../api/fetchData";
 import CartCard from "../components/CartCard";
 import { GlobalState } from "../GlobalState";
 
@@ -46,8 +47,8 @@ function Cart() {
   const [total, setTotal] = useState("0");
 
   const fetchCart = async (cart) => {
-    await axios.patch(
-      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
+    await API.patch(
+      "/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },

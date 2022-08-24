@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { API } from "./fetchData";
 
 function ProductsAPI() {
   const [products, setProducts] = useState([]);
@@ -14,8 +15,8 @@ function ProductsAPI() {
   useEffect(() => {
     const getProducts = async () => {
       setLoading(true);
-      const res = await axios.get(
-        `https://backend-emedicine-platform.herokuapp.com/api/products?limit=${
+      const res = await API.get(
+        `/api/products?limit=${
           page * 8
         }&${category}&${sort}&title[regex]=${search}`
       );

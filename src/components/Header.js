@@ -25,6 +25,7 @@ import CategoryIcon from "@material-ui/icons/Category";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import HistoryIcon from "@material-ui/icons/History";
+import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -110,7 +111,7 @@ function Header() {
   };
 
   const logOut = async () => {
-    await axios.get("https://backend-emedicine-platform.herokuapp.com/user/logout");
+    await API.get("/user/logout");
     localStorage.clear();
     setIsAdmin(false);
     setIsSeller(false);

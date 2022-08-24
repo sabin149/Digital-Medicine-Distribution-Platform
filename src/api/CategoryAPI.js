@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API } from "./fetchData";
 
 function CategoryAPI() {
   const [category, setCategory] = useState([]);
   const [callback, setCallback] = useState(false);
 
   const getCategory = async () => {
-    const res = await axios.get("https://backend-emedicine-platform.herokuapp.com/api/category");
+    const res = await API.get("/api/category");
     setCategory(res.data.categories);
   };
 
