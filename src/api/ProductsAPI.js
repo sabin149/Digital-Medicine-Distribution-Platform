@@ -20,6 +20,7 @@ function ProductsAPI() {
           page * 8
         }&${category}&${sort}&title[regex]=${search}`
       );
+
       setProducts(res.data.products);
       setResult(res.data.result);
       setLoading(false);
