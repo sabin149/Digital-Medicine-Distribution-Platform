@@ -18,13 +18,13 @@ function Categories() {
         e.preventDefault()
         try {
             if(onEdit){
-                const res = await axios.put(`http://localhost:5000/api/category/${id}`, {name: category}, {
+                const res = await axios.put(`https://backend-emedicine-platform.herokuapp.com/api/category/${id}`, {name: category}, {
                     headers: {Authorization: token}
                 })
                 // alert(res.data.msg)
                 toast.success(res.data.msg);
             }else{
-                const res = await axios.post('http://localhost:5000/api/category', {name: category}, {
+                const res = await axios.post('https://backend-emedicine-platform.herokuapp.com/api/category', {name: category}, {
                     headers: {Authorization: token}
                 })
                 // alert(res.data.msg)
@@ -48,7 +48,7 @@ function Categories() {
 
     const deleteCategory = async id =>{
         try {
-            const res = await axios.delete(`http://localhost:5000/api/category/${id}`, {
+            const res = await axios.delete(`https://backend-emedicine-platform.herokuapp.com/api/category/${id}`, {
                 headers: {Authorization: token}
             })
             // alert(res.data.msg)

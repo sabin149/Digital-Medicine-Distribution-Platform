@@ -9,7 +9,7 @@ function SellerProductsAPI(token) {
     if (token) {
       const getProducts = async () => {
         const res = await axios.get(
-          "http://localhost:5000/api/seller_product",
+          "https://backend-emedicine-platform.herokuapp.com/api/seller_product",
           {
             headers: { Authorization: token },
           }

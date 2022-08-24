@@ -77,7 +77,7 @@ function Profile() {
       formData.append("file", file);
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/api/upload",
+        "https://backend-emedicine-platform.herokuapp.com/api/upload",
         formData,
         {
           headers: {
@@ -97,7 +97,7 @@ function Profile() {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:5000/api/destroy",
+        "https://backend-emedicine-platform.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -114,7 +114,7 @@ function Profile() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/user/user_info/${id}`,
+        `https://backend-emedicine-platform.herokuapp.com/user/user_info/${id}`,
         {
           fullName: fullName,
           password: password,

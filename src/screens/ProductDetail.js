@@ -123,7 +123,7 @@ function ProductDetail() {
     e.preventDefault();
     try {
       await axios.post(
-        `http://localhost:5000/api/review/${id}`,
+        `https://backend-emedicine-platform.herokuapp.com/api/review/${id}`,
         {
           rating: ratingValue,
           comment: comment,

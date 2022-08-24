@@ -69,14 +69,14 @@ function SellerProducts() {
       if (window.confirm("Want to delete this product?")) {
         setLoading(true);
         const deleteImg = axios.post(
-          "http://localhost:5000/api/destroy",
+          "https://backend-emedicine-platform.herokuapp.com/api/destroy",
           { public_id },
           {
             headers: { Authorization: token },
           }
         );
         const deleteProduct = axios.delete(
-          `http://localhost:5000/api/product/${id}`,
+          `https://backend-emedicine-platform.herokuapp.com/api/product/${id}`,
           {
             headers: { Authorization: token },
           }

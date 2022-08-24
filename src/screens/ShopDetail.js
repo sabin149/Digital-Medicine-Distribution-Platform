@@ -27,7 +27,7 @@ function ShopDetail() {
       if (id) {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/api/shops/${id}`
+          `https://backend-emedicine-platform.herokuapp.com/api/shops/${id}`
         );
         setProducts(res.data.products);
         setLoading(false);

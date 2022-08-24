@@ -47,7 +47,7 @@ function Cart() {
 
   const fetchCart = async (cart) => {
     await axios.patch(
-      "http://localhost:5000/user/addcart",
+      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },

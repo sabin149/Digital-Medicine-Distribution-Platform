@@ -234,7 +234,7 @@ function Order() {
 
   const fetchCart = async (cart) => {
     await axios.patch(
-      "http://localhost:5000/user/addcart",
+      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },
@@ -246,7 +246,7 @@ function Order() {
     try {
       setLoading(true);
       await axios.post(
-        "http://localhost:5000/api/order",
+        "https://backend-emedicine-platform.herokuapp.com/api/order",
         {
           cart: cart,
           district: data.district,

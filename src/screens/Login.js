@@ -60,7 +60,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/user/login", {
+      const res = await axios.post("https://backend-emedicine-platform.herokuapp.com/user/login", {
         email,
         password,
       });

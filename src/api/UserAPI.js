@@ -16,7 +16,7 @@ function UserAPI(token) {
       const getUser = async () => {
         try {
           const res = await axios.get(
-            "http://localhost:5000/user/user_info",
+            "https://backend-emedicine-platform.herokuapp.com/user/user_info",
             {
               headers: { Authorization: token },
             }
@@ -49,7 +49,7 @@ function UserAPI(token) {
       setCart([...cart, { ...product, quantity: 1 }]);
 
       await axios.patch(
-        "http://localhost:5000/user/addcart",
+        "https://backend-emedicine-platform.herokuapp.com/user/addcart",
         { cart: [...cart, { ...product, quantity: 1 }] },
         {
           headers: { Authorization: token },
@@ -65,7 +65,7 @@ function UserAPI(token) {
       const getHistory = async () => {
         if (isSeller) {
           const res = await axios.get(
-            "http://localhost:5000/api/order",
+            "https://backend-emedicine-platform.herokuapp.com/api/order",
             {
               headers: { Authorization: token },
             }
@@ -73,7 +73,7 @@ function UserAPI(token) {
           setHistory(res.data.sellerOrders);
         } else {
           const res = await axios.get(
-            "http://localhost:5000/user/history",
+            "https://backend-emedicine-platform.herokuapp.com/user/history",
             {
               headers: { Authorization: token },
             }

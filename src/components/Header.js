@@ -110,7 +110,7 @@ function Header() {
   };
 
   const logOut = async () => {
-    await axios.get("http://localhost:5000/user/logout");
+    await axios.get("https://backend-emedicine-platform.herokuapp.com/user/logout");
     localStorage.clear();
     setIsAdmin(false);
     setIsSeller(false);

@@ -108,7 +108,7 @@ function HistoryDetails() {
     e.preventDefault();
     try {
       await axios.put(
-        `http://localhost:5000/api/order/${_id}`,
+        `https://backend-emedicine-platform.herokuapp.com/api/order/${_id}`,
         {
           checked: checked,
         },

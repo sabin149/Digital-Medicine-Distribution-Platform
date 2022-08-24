@@ -25,7 +25,7 @@ const ResetPassword = () => {
     }
     if (actualData.password && actualData.password_confirmation) {
       if (actualData.password === actualData.password_confirmation) {
-        const res = await axios.post(`http://localhost:5000/user/reset-password/${id}/${token}`, { password:actualData.password,password_confirmation:actualData.password_confirmation});
+        const res = await axios.post(`https://backend-emedicine-platform.herokuapp.com/user/reset-password/${id}/${token}`, { password:actualData.password,password_confirmation:actualData.password_confirmation});
         console.log(res,"res");
         if (res.data.status === "success") {
           document.getElementById('password-reset-form').reset()

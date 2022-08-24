@@ -15,7 +15,7 @@ function ProductsAPI() {
     const getProducts = async () => {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/api/products?limit=${
+        `https://backend-emedicine-platform.herokuapp.com/api/products?limit=${
           page * 8
         }&${category}&${sort}&title[regex]=${search}`
       );

@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
 
   const refreshToken = async () => {
     const res = await axios.get(
-      "http://localhost:5000/user/refresh_token"
+      "https://backend-emedicine-platform.herokuapp.com/user/refresh_token"
     );
     setToken(res.data.accessToken);
   };

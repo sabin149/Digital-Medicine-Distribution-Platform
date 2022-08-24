@@ -11,7 +11,7 @@ const VerifyUser = () => {
     useEffect(() => {
         const verifyEmailUrl = async () => {
             try {
-                const url = `http://localhost:5000/user/verify-user/${id}/${token}`;
+                const url = `https://backend-emedicine-platform.herokuapp.com/user/verify-user/${id}/${token}`;
                 const { data } = await axios.get(url);
                 console.log(data);
                 setValidUrl(true);
