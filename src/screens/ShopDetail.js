@@ -2,7 +2,6 @@ import { Container, Grid, Grow, makeStyles } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { API } from "../api/fetchData";
 import ProductCard from "../components/ProductCard";
 import Loading from "./Loading";
 
@@ -27,8 +26,8 @@ function ShopDetail() {
     const getProducts = async () => {
       if (id) {
         setLoading(true);
-        const res = await API.get(
-          `/api/shops/${id}`
+        const res = await axios.get(
+          `https://backend-emedicine-platform.herokuapp.com/api/shops/${id}`
         );
         setProducts(res.data.products);
         setLoading(false);

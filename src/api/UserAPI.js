@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API } from "./fetchData";
 
 function UserAPI(token) {
   const [isLogged, setIsLogged] = useState(false);
@@ -16,8 +15,8 @@ function UserAPI(token) {
     if (token) {
       const getUser = async () => {
         try {
-          const res = await API.get(
-            "/user/user_info",
+          const res = await axios.get(
+            "https://backend-emedicine-platform.herokuapp.com/user/user_info",
             {
               headers: { Authorization: token },
             }
@@ -49,8 +48,8 @@ function UserAPI(token) {
     if (check) {
       setCart([...cart, { ...product, quantity: 1 }]);
 
-      await API.patch(
-        "/user/addcart",
+      await axios.patch(
+        "https://backend-emedicine-platform.herokuapp.com/user/addcart",
         { cart: [...cart, { ...product, quantity: 1 }] },
         {
           headers: { Authorization: token },
@@ -65,16 +64,16 @@ function UserAPI(token) {
     if (token) {
       const getHistory = async () => {
         if (isSeller) {
-          const res = await API.get(
-            "/api/order",
+          const res = await axios.get(
+            "https://backend-emedicine-platform.herokuapp.com/api/order",
             {
               headers: { Authorization: token },
             }
           );
           setHistory(res.data.sellerOrders);
         } else {
-          const res = await API.get(
-            "/user/history",
+          const res = await axios.get(
+            "https://backend-emedicine-platform.herokuapp.com/user/history",
             {
               headers: { Authorization: token },
             }

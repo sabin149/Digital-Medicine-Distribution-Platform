@@ -24,7 +24,6 @@ import {
 } from "react-hook-form";
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
-import { API } from "../api/fetchData";
 import { GlobalState } from "../GlobalState";
 
 const useStyles = makeStyles((theme) => ({
@@ -110,7 +109,7 @@ const ContactForm = () => {
 };
 
 const PaymentForm = () => {
-  const { control } = useFormContext();
+  // const { control } = useFormContext();
   const [value, setValue] = useState("bkash");
   return (
     <div
@@ -234,8 +233,8 @@ function Order() {
   };
 
   const fetchCart = async (cart) => {
-    await API.patch(
-      "/user/addcart",
+    await axios.patch(
+      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },
@@ -246,8 +245,8 @@ function Order() {
   const order = async (data) => {
     try {
       setLoading(true);
-      await API.post(
-        "/api/order",
+      await axios.post(
+        "https://backend-emedicine-platform.herokuapp.com/api/order",
         {
           cart: cart,
           district: data.district,

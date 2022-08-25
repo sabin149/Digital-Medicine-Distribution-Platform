@@ -2,7 +2,6 @@ import { Button } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { API } from '../api/fetchData';
 import success from "../assets/success.png";
 
 const VerifyUser = () => {
@@ -12,8 +11,8 @@ const VerifyUser = () => {
     useEffect(() => {
         const verifyEmailUrl = async () => {
             try {
-                const url = `/user/verify-user/${id}/${token}`;
-                const { data } = await API.get(url);
+                const url = `https://backend-emedicine-platform.herokuapp.com/user/verify-user/${id}/${token}`;
+                const { data } = await axios.get(url);
                 console.log(data);
                 setValidUrl(true);
             } catch (error) {

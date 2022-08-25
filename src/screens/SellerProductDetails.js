@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import GoogleMaps from "../components/GoogleMaps";
-import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -104,7 +103,7 @@ function SellerProductDetails() {
   }, [id, products]);
 
 
- 
+
   let lat, lng;
   if (address === "Pokhara") {
     lat = 28.2152602;
@@ -119,14 +118,17 @@ function SellerProductDetails() {
   } if (address === "Lumbini") {
     lat = 27.5052594;
     lng = 83.4065654;
+  } else {
+    lat = 27.7113869;
+    lng = 85.3151488;
   }
 
 
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      await API.post(
-        `/api/review/${id}`,
+      await axios.post(
+        `https://backend-emedicine-platform.herokuapp.com/api/review/${id}`,
         {
           rating: ratingValue,
           comment: comment,
@@ -196,7 +198,7 @@ function SellerProductDetails() {
                 ${details.price}
               </span>
             </Typography>
-            
+
             <Typography
               gutterBottom
               variant="h6"

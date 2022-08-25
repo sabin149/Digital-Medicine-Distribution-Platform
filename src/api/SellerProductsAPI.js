@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API } from "./fetchData";
 
 function SellerProductsAPI(token) {
   const [sellerProducts, setSellerProducts] = useState([]);
@@ -9,8 +8,8 @@ function SellerProductsAPI(token) {
   useEffect(() => {
     if (token) {
       const getProducts = async () => {
-        const res = await API.get(
-          "/api/seller_product",
+        const res = await axios.get(
+          "https://backend-emedicine-platform.herokuapp.com/api/seller_product",
           {
             headers: { Authorization: token },
           }

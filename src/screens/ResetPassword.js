@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { API } from "../api/fetchData";
 
 
 
@@ -26,7 +25,7 @@ const ResetPassword = () => {
     }
     if (actualData.password && actualData.password_confirmation) {
       if (actualData.password === actualData.password_confirmation) {
-        const res = await API.post(`/user/reset-password/${id}/${token}`, { password:actualData.password,password_confirmation:actualData.password_confirmation});
+        const res = await axios.post(`https://backend-emedicine-platform.herokuapp.com/user/reset-password/${id}/${token}`, { password:actualData.password,password_confirmation:actualData.password_confirmation});
         console.log(res,"res");
         if (res.data.status === "success") {
           document.getElementById('password-reset-form').reset()

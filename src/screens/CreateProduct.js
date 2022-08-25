@@ -15,7 +15,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { GlobalState } from "../GlobalState";
 import { useHistory, useParams } from "react-router-dom";
-import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -93,7 +92,7 @@ function CreateProduct() {
     try {
       if (onEdit) {
         await axios.put(
-          `/api/product/${_id}`,
+          `https://backend-emedicine-platform.herokuapp.com/api/product/${_id}`,
           {
             title: title,
             price: price,
@@ -107,7 +106,7 @@ function CreateProduct() {
         toast.info("Product Updated.");
       } else {
         await axios.post(
-          "/api/products",
+          "https://backend-emedicine-platform.herokuapp.com/api/products",
           {
             product_id: productId,
             title: title,
@@ -140,8 +139,8 @@ function CreateProduct() {
       let formData = new FormData();
       formData.append("file", file);
       setLoading(true);
-      const res = await API.post(
-        "/api/upload",
+      const res = await axios.post(
+        "https://backend-emedicine-platform.herokuapp.com/api/upload",
         formData,
         {
           headers: {
@@ -161,7 +160,7 @@ function CreateProduct() {
     try {
       setLoading(true);
       await axios.post(
-        "/api/destroy",
+        "https://backend-emedicine-platform.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },

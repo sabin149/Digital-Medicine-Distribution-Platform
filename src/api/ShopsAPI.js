@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { API } from "./fetchData";
 
 function ShopsAPI() {
   const [shops, setShops] = useState([]);
   const [callback, setCallback] = useState(false);
 
   const getShops = async () => {
-    const res = await API.get("/api/shops");
+    const res = await axios.get("https://backend-emedicine-platform.herokuapp.com/api/shops");
     setShops(res.data.shops);
   };
 

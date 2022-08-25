@@ -4,7 +4,6 @@ import axios from 'axios'
 import "../styles/categories.css"
 import {Button} from "@material-ui/core"
 import { toast } from 'react-toastify'
-import { API } from '../api/fetchData'
 
 function Categories() {
     const state = useContext(GlobalState)
@@ -19,13 +18,13 @@ function Categories() {
         e.preventDefault()
         try {
             if(onEdit){
-                const res = await API.put(`/api/category/${id}`, {name: category}, {
+                const res = await axios.put(`https://backend-emedicine-platform.herokuapp.com/api/category/${id}`, {name: category}, {
                     headers: {Authorization: token}
                 })
                 // alert(res.data.msg)
                 toast.success(res.data.msg);
             }else{
-                const res = await API.post('/api/category', {name: category}, {
+                const res = await axios.post('https://backend-emedicine-platform.herokuapp.com/api/category', {name: category}, {
                     headers: {Authorization: token}
                 })
                 // alert(res.data.msg)
@@ -49,7 +48,7 @@ function Categories() {
 
     const deleteCategory = async id =>{
         try {
-            const res = await API.delete(`/api/category/${id}`, {
+            const res = await axios.delete(`https://backend-emedicine-platform.herokuapp.com/api/category/${id}`, {
                 headers: {Authorization: token}
             })
             // alert(res.data.msg)

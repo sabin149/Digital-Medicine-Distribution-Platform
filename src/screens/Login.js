@@ -12,7 +12,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,11 +60,12 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/user/login", {
+      const res = await axios.post("https://backend-emedicine-platform.herokuapp.com/user/login", {
         email,
         password,
       });
 
+   
       if (res.data.user.status === false) {
         toast.success(res.data.msg);
         setSuccess({ status: true, msg: res.data.msg, type: 'success' })
@@ -79,7 +79,7 @@ function Login() {
         setTimeout(() => {
           window.location.href = "/";
         }
-          , 4000)
+          , 3000)
       
       }
       //  // toast.success("Welcome! "+ res.data.newUser.userName);

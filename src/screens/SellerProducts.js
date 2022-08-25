@@ -19,7 +19,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API } from "../api/fetchData";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -69,15 +68,15 @@ function SellerProducts() {
     try {
       if (window.confirm("Want to delete this product?")) {
         setLoading(true);
-        const deleteImg = API.post(
-          "/api/destroy",
+        const deleteImg = axios.post(
+          "https://backend-emedicine-platform.herokuapp.com/api/destroy",
           { public_id },
           {
             headers: { Authorization: token },
           }
         );
         const deleteProduct = axios.delete(
-          `/api/product/${id}`,
+          `https://backend-emedicine-platform.herokuapp.com/api/product/${id}`,
           {
             headers: { Authorization: token },
           }

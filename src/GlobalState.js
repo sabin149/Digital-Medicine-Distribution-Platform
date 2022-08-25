@@ -5,7 +5,6 @@ import CategoryAPI from "./api/CategoryAPI";
 import ProductsAPI from "./api/ProductsAPI";
 import ShopsAPI from "./api/ShopsAPI";
 import SellerProductsAPI from "./api/SellerProductsAPI";
-import { API } from "./api/fetchData";
 
 export const GlobalState = createContext();
 
@@ -13,10 +12,10 @@ export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
   const refreshToken = async () => {
-    // const res = await axios.get(
-    //   "/user/refresh_token"
-    // );
-    const res = await API.get("/user/refresh_token");
+    const res = await axios.get(
+      "https://backend-emedicine-platform.herokuapp.com/user/refresh_token"
+    );
+    console.log(res,"res");
     setToken(res.data.accessToken);
   };
 

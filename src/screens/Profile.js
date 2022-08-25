@@ -11,7 +11,6 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import { GlobalState } from "../GlobalState";
-import { API } from "../api/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,8 +76,8 @@ function Profile() {
       let formData = new FormData();
       formData.append("file", file);
       setLoading(true);
-      const res = await API.post(
-        "/api/upload",
+      const res = await axios.post(
+        "https://backend-emedicine-platform.herokuapp.com/api/upload",
         formData,
         {
           headers: {
@@ -98,7 +97,7 @@ function Profile() {
     try {
       setLoading(true);
       await axios.post(
-        "/api/destroy",
+        "https://backend-emedicine-platform.herokuapp.com/api/destroy",
         { public_id: image.public_id },
         {
           headers: { Authorization: token },
@@ -114,8 +113,8 @@ function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await API.put(
-        `/user/user_info/${id}`,
+      await axios.put(
+        `https://backend-emedicine-platform.herokuapp.com/user/user_info/${id}`,
         {
           fullName: fullName,
           password: password,
