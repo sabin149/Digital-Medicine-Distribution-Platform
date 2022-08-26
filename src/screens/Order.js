@@ -25,6 +25,7 @@ import {
 import { useHistory } from "react-router";
 import { toast } from "react-toastify";
 import { GlobalState } from "../GlobalState";
+import { API } from "../utils/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -233,8 +234,8 @@ function Order() {
   };
 
   const fetchCart = async (cart) => {
-    await axios.patch(
-      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
+    await API.patch(
+      "/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },
@@ -245,8 +246,8 @@ function Order() {
   const order = async (data) => {
     try {
       setLoading(true);
-      await axios.post(
-        "https://backend-emedicine-platform.herokuapp.com/api/order",
+      await API.post(
+        "/api/order",
         {
           cart: cart,
           district: data.district,

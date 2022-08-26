@@ -2,6 +2,7 @@ import { Grid, TextField, Button, Box, Alert } from "@mui/material";
 import axios from 'axios';
 import React, { useState } from 'react'
 import { toast } from "react-toastify";
+import { API } from "../utils/fetchData";
 
 const SendPasswordResetEmail = () => {
     const [error, setError] = useState({
@@ -17,7 +18,7 @@ const SendPasswordResetEmail = () => {
         }
         if (actualData.email) {
             try {
-                const res = await axios.post("https://backend-emedicine-platform.herokuapp.com/user/send-reset-password-email", { email: actualData.email });
+                const res = await API.post("/user/send-reset-password-email", { email: actualData.email });
                 if (res.data.status === "success") {
                     document.getElementById('password-reset-email-form').reset()
                     setError({ status: true, msg: "Password Reset Email Sent. Check Your Email !!", type: 'success' })

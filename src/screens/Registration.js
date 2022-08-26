@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Alert } from "@mui/material";
+import { API } from "../utils/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +70,7 @@ function Registration() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const res= await axios.post("https://backend-emedicine-platform.herokuapp.com/user/register", {
+    const res= await API.post("/user/register", {
         fullName: fullName,
         userName: userName,
         email,
@@ -78,6 +79,7 @@ function Registration() {
         role: role,
         shopName: shopName,
       });
+      localStorage.setItem('firstLogin', true)
       // window.location.href = "/";
       // toast.success("Register Success.");
       toast.success(res.data.msg);

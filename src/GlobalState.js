@@ -1,27 +1,46 @@
 import React, { createContext, useEffect, useState } from "react";
-import axios from "axios";
+
 import UserAPI from "./api/UserAPI";
 import CategoryAPI from "./api/CategoryAPI";
 import ProductsAPI from "./api/ProductsAPI";
 import ShopsAPI from "./api/ShopsAPI";
 import SellerProductsAPI from "./api/SellerProductsAPI";
+import axios from "axios";
+import { API } from "./utils/fetchData";
 
 export const GlobalState = createContext();
+
 
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
 
-  const refreshToken = async () => {
-    const res = await axios.get(
-      "https://backend-emedicine-platform.herokuapp.com/user/refresh_token"
-    );
-    console.log(res,"res");
-    setToken(res.data.accessToken);
-  };
+  // const refreshToken = async () => {
 
-  useEffect(() => {
-    refreshToken();
-  }, []);
+  //   const res = await API.get(
+  //     "/user/refresh_token"
+  //   );
+  //   setToken(res.data.accessToken);
+  // };
+
+  // useEffect(() => {
+  //   refreshToken();
+  // }, []);
+
+  useEffect(() =>{
+    const firstLogin = localStorage.getItem('firstLogin')
+    if(firstLogin){
+        const refreshToken = async () =>{
+            const res = await API.get('/user/refresh_token')
+    
+            setToken(res.data.accesstoken)
+
+            setTimeout(() => {
+                refreshToken()
+            }, 10 * 60 * 1000)
+        }
+        refreshToken()
+    }
+},[])
 
   const state = {
     token: [token, setToken],

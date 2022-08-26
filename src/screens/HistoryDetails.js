@@ -18,6 +18,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { toast } from "react-toastify";
 import { GlobalState } from "../GlobalState";
+import { API } from "../utils/fetchData";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -107,8 +108,8 @@ function HistoryDetails() {
   const updateOrder = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(
-        `https://backend-emedicine-platform.herokuapp.com/api/order/${_id}`,
+      await API.put(
+        `/api/order/${_id}`,
         {
           checked: checked,
         },

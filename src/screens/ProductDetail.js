@@ -18,6 +18,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import GoogleMaps from "../components/GoogleMaps";
+import { API } from "../utils/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -125,8 +126,8 @@ function ProductDetail() {
   const submitReview = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `https://backend-emedicine-platform.herokuapp.com/api/review/${id}`,
+      await API.post(
+        `/api/review/${id}`,
         {
           rating: ratingValue,
           comment: comment,

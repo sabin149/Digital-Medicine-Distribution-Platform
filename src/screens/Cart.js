@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import CartCard from "../components/CartCard";
 import { GlobalState } from "../GlobalState";
+import { API } from "../utils/fetchData";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,8 +47,8 @@ function Cart() {
   const [total, setTotal] = useState("0");
 
   const fetchCart = async (cart) => {
-    await axios.patch(
-      "https://backend-emedicine-platform.herokuapp.com/user/addcart",
+    await API.patch(
+      "/user/addcart",
       { cart: cart },
       {
         headers: { Authorization: token },
