@@ -30,7 +30,6 @@ useEffect(() => {
       const refreshToken = async () => {
         const authToken = localStorage.getItem('token')
         setToken(authToken)
-        console.log(authToken, "jnjds")
         setToken(authToken);
       };
       refreshToken();
