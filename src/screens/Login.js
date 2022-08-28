@@ -61,12 +61,13 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post("/user/login", {
+      const res = await axios.post("https://backend-emedicine-platform.herokuapp.com/user/login", {
         email,
         password,
       });
 
       localStorage.setItem('firstLogin', true)
+      localStorage.setItem('token', res.data.accessToken)
       if (res.data.user.status === false) {
         toast.success(res.data.msg);
         setSuccess({ status: true, msg: res.data.msg, type: 'success' })

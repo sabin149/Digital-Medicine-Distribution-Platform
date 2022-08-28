@@ -80,8 +80,6 @@ function Registration() {
         shopName: shopName,
       });
       localStorage.setItem('firstLogin', true)
-      // window.location.href = "/";
-      // toast.success("Register Success.");
       toast.success(res.data.msg);
       setSuccess({ status: true, msg: res.data.msg, type: 'success'})
       setFullName("");

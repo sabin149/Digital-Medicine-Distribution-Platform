@@ -6,13 +6,13 @@ import ProductsAPI from "./api/ProductsAPI";
 import ShopsAPI from "./api/ShopsAPI";
 import SellerProductsAPI from "./api/SellerProductsAPI";
 import axios from "axios";
-import { API } from "./utils/fetchData";
 
 export const GlobalState = createContext();
 
 
 export const DataProvider = ({ children }) => {
   const [token, setToken] = useState(false);
+
 
   // const refreshToken = async () => {
 
@@ -25,22 +25,34 @@ export const DataProvider = ({ children }) => {
   // useEffect(() => {
   //   refreshToken();
   // }, []);
+useEffect(() => {
 
-  useEffect(() =>{
-    const firstLogin = localStorage.getItem('firstLogin')
-    if(firstLogin){
-        const refreshToken = async () =>{
-            const res = await API.get('/user/refresh_token')
-    
-            setToken(res.data.accesstoken)
+      const refreshToken = async () => {
+        const authToken = localStorage.getItem('token')
+        setToken(authToken)
+        console.log(authToken, "jnjds")
+        setToken(authToken);
+      };
+      refreshToken();
+  }, []);
 
-            setTimeout(() => {
-                refreshToken()
-            }, 10 * 60 * 1000)
-        }
-        refreshToken()
-    }
-},[])
+
+  // useEffect(() => {
+  //   const firstLogin = localStorage.getItem('firstLogin')
+  //   if (firstLogin) {
+  //     const refreshToken = async () => {
+  //       const res = await axios.get('https://backend-emedicine-platform.herokuapp.com/user/refresh_token')
+
+  //       setToken(res.data.accessToken)
+       
+
+  //       setTimeout(() => {
+  //         refreshToken()
+  //       }, 10 * 60 * 1000)
+  //     }
+  //     refreshToken()
+  //   }
+  // }, [])
 
   const state = {
     token: [token, setToken],
